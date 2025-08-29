@@ -87,7 +87,7 @@ const translations = {
     uploadPhotoDesc: "Professional suratingizni shu yerga yuklang",
     aboutMe: "Men Haqimda",
     aboutDesc:
-      "Chiroyli, moslashuvchan veb-ilovalar yaratishga ishtiyoqli Frontend Junior+ ReactJS dasturchi. React, Next.js va zamonaviy frontend texnologiyalarida mutaxassis.",
+      "Men web dasturlashga qiziqadigan va bu sohada o‘z yo‘lini topishga intilayotgan dasturchiman. Asosiy yo‘nalishim — Frontend: React, Next.js va TypeScript yordamida foydalanuvchilar uchun qulay va chiroyli web sahifalar yarataman. Ish jarayonida kod sifatiga, dizayn detallariga va moslashuvchanlikka katta e’tibor beraman. Har bir loyiham men uchun nafaqat ish, balki yangi narsalarni o‘rganish va o‘zimni sinovdan o‘tkazish imkoniyati. Men doimiy rivojlanishga intilaman va yaxshi jamoa bilan birgalikda katta loyihalarni amalga oshirishni orzu qilaman.",
     skillsTitle: "Frontend Ko'nikmalar va Texnologiyalar",
     frontend: "Asosiy Frontend",
     frameworks: "Freymvorklar va Kutubxonalar",
