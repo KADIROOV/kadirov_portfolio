@@ -156,8 +156,8 @@ export default function Portfolio() {
 
   const downloadResume = () => {
     const link = document.createElement("a")
-    link.href = "/kadirov_resume.pdf"
-    link.download = "kadirov_resume.pdf"
+    link.href = "/KadirovCV.pdf"
+    link.download = "KadirovCV.pdf"
     link.click()
   }
 
