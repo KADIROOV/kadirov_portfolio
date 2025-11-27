@@ -579,44 +579,55 @@ export default function Portfolio() {
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="hover:shadow-xl  transition-all duration-300 bg-background/90 backdrop-blur-sm border-gray-900 dark:border-gray-100">
+              <Card className="hover:shadow-xl transition-all duration-300 bg-background/90 backdrop-blur-sm border-gray-900 dark:border-gray-100">
                 <CardHeader>
                   <CardTitle>{t.sendMessage}</CardTitle>
                   <CardDescription>{t.sendMessageDesc}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Input
-                      placeholder={t.yourName}
-                      className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                    />
-                  </div>
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder={t.yourEmail}
-                      className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder={t.yourMessage}
-                      rows={4}
-                      className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                    />
-                  </div>
-                  <Button
-                    className="w-full group text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 bg-neutral-800"
-                    onClick={() =>
-                      alert(
-                        "Message sent! (This is a demo - in a real app, this would send an email)"
-                      )
-                    }
-                  >
-                    <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                    {t.sendBtn}
-                  </Button>
-                </CardContent>
+
+                {/* FORM TAGINI QO‘SHDIK */}
+                <form
+                  action="https://kadirov.app.n8n.cloud/workflow/heO3GLYJV5rsjrJ2" // O‘Z URLINGNI BU YERGA QO‘Y
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <CardContent className="space-y-4">
+                    <div>
+                      <Input
+                        name="name" // name="name" qo‘shdik
+                        placeholder={t.yourName}
+                        required
+                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
+                      />
+                    </div>
+                    <div>
+                      <Input
+                        type="email"
+                        name="email" // name="email" qo‘shdik
+                        placeholder={t.yourEmail}
+                        required
+                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
+                      />
+                    </div>
+                    <div>
+                      <Textarea
+                        name="message" // name="message" qo‘shdik
+                        placeholder={t.yourMessage}
+                        rows={4}
+                        required
+                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit" // type="submit" qilib o‘zgartirdik
+                      className="w-full group text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 bg-neutral-800"
+                    >
+                      <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
+                      {t.sendBtn}
+                    </Button>
+                  </CardContent>
+                </form>
               </Card>
 
               <div className="space-y-6">
