@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { toast } from "sonner";
 import { LanguageSelector } from "@/components/language-selector";
 import {
   Download,
@@ -142,6 +143,38 @@ export default function Portfolio() {
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   const t = translations[currentLanguage];
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch(
+        "https://kadirov.app.n8n.cloud/webhook/5369360c-29b7-4bc3-be73-5bd5eba9f294",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (res.ok) {
+        toast.success(
+          "Xabar muvaffaqiyatli yuborildi! Tez orada javob beraman ❤️"
+        );
+        e.currentTarget.reset(); // formani tozalaydi
+      } else {
+        toast.error("Xabar yuborishda xatolik bor. Iltimos, qayta urining.");
+      }
+    } catch (err) {
+      toast.error("Internet aloqasi yo‘q yoki xatolik yuz berdi.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem(
@@ -584,50 +617,38 @@ export default function Portfolio() {
                   <CardTitle>{t.sendMessage}</CardTitle>
                   <CardDescription>{t.sendMessageDesc}</CardDescription>
                 </CardHeader>
-
-                {/* FORM TAGINI QO‘SHDIK */}
-                <form
-                  action="https://kadirov.app.n8n.cloud/webhook/5369360c-29b7-4bc3-be73-5bd5eba9f294" // O‘Z URLINGNI BU YERGA QO‘Y
-                  method="POST"
-                  className="space-y-4"
-                >
-                  <CardContent className="space-y-4">
-                    <div>
-                      <Input
-                        name="name" // name="name" qo‘shdik
-                        placeholder={t.yourName}
-                        required
-                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                      />
-                    </div>
-                    <div>
-                      <Input
-                        type="email"
-                        name="email" // name="email" qo‘shdik
-                        placeholder={t.yourEmail}
-                        required
-                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                      />
-                    </div>
-                    <div>
-                      <Textarea
-                        name="message" // name="message" qo‘shdik
-                        placeholder={t.yourMessage}
-                        rows={4}
-                        required
-                        className="border-border focus:border-gray-400 dark:focus:border-gray-500"
-                      />
-                    </div>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <Input name="name" placeholder={t.yourName} required />
+                    <Input
+                      name="email"
+                      type="email"
+                      placeholder={t.yourEmail}
+                      required
+                    />
+                    <Textarea
+                      name="message"
+                      placeholder={t.yourMessage}
+                      rows={4}
+                      required
+                    />
 
                     <Button
-                      type="submit" // type="submit" qilib o‘zgartirdik
+                      type="submit"
+                      disabled={isLoading}
                       className="w-full group text-white hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 bg-neutral-800"
                     >
-                      <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                      {t.sendBtn}
+                      {isLoading ? (
+                        <>Yuborilmoqda...</>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                          {t.sendBtn}
+                        </>
+                      )}
                     </Button>
-                  </CardContent>
-                </form>
+                  </form>
+                </CardContent>
               </Card>
 
               <div className="space-y-6">
