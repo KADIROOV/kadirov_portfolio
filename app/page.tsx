@@ -587,7 +587,7 @@ export default function Portfolio() {
 
                 {/* FORM TAGINI QO‘SHDIK */}
                 <form
-                  action="https://kadirov.app.n8n.cloud/webhook-test/5369360c-29b7-4bc3-be73-5bd5eba9f294" // O‘Z URLINGNI BU YERGA QO‘Y
+                  action="https://kadirov.app.n8n.cloud/webhook/5369360c-29b7-4bc3-be73-5bd5eba9f294" // O‘Z URLINGNI BU YERGA QO‘Y
                   method="POST"
                   className="space-y-4"
                 >
