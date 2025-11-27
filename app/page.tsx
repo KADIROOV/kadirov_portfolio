@@ -150,7 +150,8 @@ export default function Portfolio() {
     e.preventDefault();
     setIsLoading(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
     try {
       const res = await fetch(
@@ -163,14 +164,14 @@ export default function Portfolio() {
 
       if (res.ok) {
         toast.success(
-          "Xabar muvaffaqiyatli yuborildi! Tez orada javob beraman ❤️"
+          "Xabar muvaffaqiyatli yuborildi! Tez orada nasib, javob beraman"
         );
-        e.currentTarget.reset(); // formani tozalaydi
+        form.reset();
       } else {
-        toast.error("Xabar yuborishda xatolik bor. Iltimos, qayta urining.");
+        toast.error("Xatolik yuz berdi. Qayta urining.");
       }
     } catch (err) {
-      toast.error("Internet aloqasi yo‘q yoki xatolik yuz berdi.");
+      toast.error("Internet aloqasi bilan muammo bor shekilli?");
     } finally {
       setIsLoading(false);
     }
